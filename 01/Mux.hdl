@@ -1,0 +1,31 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Mux.hdl
+/** 
+ * Multiplexor:
+ * if (sel = 0) out = a, else out = b
+ */
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    // for diff a and b values
+    // check if a and sel have diff values 
+    Xor(a=a, b=sel, out=selXorA);
+
+    // check if b and sel have diff values
+    // perform XNOR
+    Xor(a=sel, b=b, out=selXorB);
+    Not(in=selXorB, out=notSelXorB);
+
+    // if a and sel have diff values,
+    // b and sel are same
+    And(a=selXorA, b=notSelXorB, out=andXor);
+
+    // if both a and b have same values
+    And(a=a, b=b, out=aAndB);
+
+    Or(a=andXor, b=aAndB, out=out);
+}
