@@ -11,21 +11,8 @@ CHIP Mux {
     OUT out;
 
     PARTS:
-    // for diff a and b values
-    // check if a and sel have diff values 
-    Xor(a=a, b=sel, out=selXorA);
-
-    // check if b and sel have diff values
-    // perform XNOR
-    Xor(a=sel, b=b, out=selXorB);
-    Not(in=selXorB, out=notSelXorB);
-
-    // if a and sel have diff values,
-    // b and sel are same
-    And(a=selXorA, b=notSelXorB, out=andXor);
-
-    // if both a and b have same values
-    And(a=a, b=b, out=aAndB);
-
-    Or(a=andXor, b=aAndB, out=out);
+    Not(in=sel, out=notSel);
+    And(a=a, b=notSel, out=aAndNotSel);
+    And(a=b, b=sel, out=bAndSel);
+    Or(a=aAndNotSel, b=bAndSel, out=out);
 }
