@@ -27,13 +27,15 @@ public class HackAssembler {
      */
     public void firstPass(){
         Parser parser = new Parser(assemblyFile);
+        int lineNumber = 0;
         while(parser.hasMoreLines()){
             parser.advance();
             InstructionType currentInstructionType = parser.instructionType();
             if (currentInstructionType == InstructionType.L_INSTRUCTION){
                 String symbol = parser.symbol();
-                int address = 0;
-                symbolTable.addEntry(symbol, address);
+                symbolTable.addEntry(symbol, lineNumber);
+            } else {
+                lineNumber++;
             }
         }
     }
@@ -50,15 +52,19 @@ public class HackAssembler {
         while(parser.hasMoreLines()){
             parser.advance();
             InstructionType currentInstructionType = parser.instructionType();
-            if (currentInstructionType == InstructionType.A_INSTRUCTION || currentInstructionType == InstructionType.L_INSTRUCTION){
+            if (currentInstructionType == InstructionType.A_INSTRUCTION){
                 String symbol = parser.symbol();
-                if (symbolTable.contains(symbol)){
-                    int address = symbolTable.getAddress(symbol);
-                    String binaryValue = String.format("%16s", Integer.toBinaryString(address)).replace(' ', '0');
-                    content.append(binaryValue).append(System.lineSeparator());
+                int symbolValue;
+                if (isDecimal(symbol)){
+                    symbolValue = Integer.valueOf(symbol);
                 } else {
-                    symbolTable.addEntry(symbol, 0);
+                    if (!symbolTable.contains(symbol)) 
+                        symbolTable.addEntry(symbol, symbolTable.currentFreeMemoryAddress++);
+                    symbolValue = symbolTable.getAddress(symbol);
                 }
+                String binaryValue = String.format("%16s", Integer.toBinaryString(symbolValue)).replace(' ', '0');
+                content.append(binaryValue).append(System.lineSeparator());
+
             } else if (currentInstructionType == InstructionType.C_INSTRUCTION){
                 String dest = parser.dest();
                 String comp = parser.comp();
@@ -73,8 +79,20 @@ public class HackAssembler {
         writeHackFile(content.toString());
     }
 
+    private boolean isDecimal(String symbol){
+        boolean _isDecimal = true;
+        try {
+            Integer.parseInt(symbol);
+        } catch (NumberFormatException e) {
+            _isDecimal = false;
+        }
+        return _isDecimal;
+    }
+
     private void writeHackFile(String content){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("../../06/Test.hack"))){
+        String assemblyFileName = assemblyFile.getName();
+        String hackFileName = assemblyFileName.substring(0, assemblyFileName.lastIndexOf(".")) + ".hack";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("../../06/" + hackFileName))){
             writer.write(content);
         } catch (IOException e) {
             e.printStackTrace();
