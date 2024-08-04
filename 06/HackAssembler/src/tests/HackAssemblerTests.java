@@ -32,8 +32,7 @@ public class HackAssemblerTests {
 
     @Test
     public void addTest(){
-        HackAssembler hackAssembler = new HackAssembler();
-        hackAssembler.initialize("../../06/Add.asm");
+        HackAssembler hackAssembler = new HackAssembler("../../06/Add.asm");
         hackAssembler.firstPass();
         hackAssembler.secondPass();
         String addHack = readFile("../../06/Add.Hack");
@@ -42,8 +41,7 @@ public class HackAssemblerTests {
 
     @Test
     public void maxTest(){
-        HackAssembler hackAssembler = new HackAssembler();
-        hackAssembler.initialize("../../06/Max.asm");
+        HackAssembler hackAssembler = new HackAssembler("../../06/Max.asm");
         hackAssembler.firstPass();
         hackAssembler.secondPass();
         String maxHack = readFile("../../06/Max.hack");
@@ -52,8 +50,7 @@ public class HackAssemblerTests {
 
     @Test
     public void maxLTest(){
-        HackAssembler hackAssembler = new HackAssembler();
-        hackAssembler.initialize("../../06/MaxL.asm");
+        HackAssembler hackAssembler = new HackAssembler("../../06/MaxL.asm");
         hackAssembler.firstPass();
         hackAssembler.secondPass();
         String maxLHack = readFile("../../06/MaxL.hack");
@@ -61,9 +58,8 @@ public class HackAssemblerTests {
     }
 
     @Test
-    public void pongHackTest(){
-        HackAssembler hackAssembler = new HackAssembler();
-        hackAssembler.initialize("../../06/Pong.asm");
+    public void pongTest(){
+        HackAssembler hackAssembler = new HackAssembler("../../06/Pong.asm");
         hackAssembler.firstPass();
         hackAssembler.secondPass();
         String pongHack = readFile("../../06/Pong.hack");
@@ -72,8 +68,7 @@ public class HackAssemblerTests {
 
     @Test
     public void pongLTest(){
-        HackAssembler hackAssembler = new HackAssembler();
-        hackAssembler.initialize("../../06/PongL.asm");
+        HackAssembler hackAssembler = new HackAssembler("../../06/PongL.asm");
         hackAssembler.firstPass();
         hackAssembler.secondPass();
         String pongLHack = readFile("../../06/PongL.hack");
@@ -82,8 +77,7 @@ public class HackAssemblerTests {
 
     @Test
     public void rectTest(){
-        HackAssembler hackAssembler = new HackAssembler();
-        hackAssembler.initialize("../../06/Rect.asm");
+        HackAssembler hackAssembler = new HackAssembler("../../06/Rect.asm");
         hackAssembler.firstPass();
         hackAssembler.secondPass();
         String rectHack = readFile("../../06/Rect.hack");
@@ -92,8 +86,7 @@ public class HackAssemblerTests {
 
     @Test
     public void rectLTest(){
-        HackAssembler hackAssembler = new HackAssembler();
-        hackAssembler.initialize("../../06/RectL.asm");
+        HackAssembler hackAssembler = new HackAssembler("../../06/RectL.asm");
         hackAssembler.firstPass();
         hackAssembler.secondPass();
         String rectLHack = readFile("../../06/RectL.hack");
@@ -112,5 +105,4 @@ public class HackAssemblerTests {
         }
         return content.toString();
     }
-
 }
