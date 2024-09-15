@@ -176,12 +176,10 @@ M=D
 M=M+1
 // add
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @SP
-M=M-1
-A=M
+AM=M-1
 D=D+M
 @SP
 A=M
@@ -201,12 +199,10 @@ M=D
 M=M+1
 // sub
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M-D
 @SP
 A=M
@@ -237,12 +233,10 @@ M=D
 M=M+1
 // add
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @SP
-M=M-1
-A=M
+AM=M-1
 D=D+M
 @SP
 A=M
@@ -251,12 +245,10 @@ M=D
 M=M+1
 // sub
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M-D
 @SP
 A=M
@@ -276,12 +268,10 @@ M=D
 M=M+1
 // add
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @SP
-M=M-1
-A=M
+AM=M-1
 D=D+M
 @SP
 A=M
