@@ -4,7 +4,12 @@ import java.io.File;
 
 public class VMTranslator {
 
-    public VMTranslator(String filePath){
+    public static void main(String[] args) {
+        String filePath = args[0];
+        new VMTranslator(filePath);
+    }
+
+    public VMTranslator(String filePath) {
         File vmFile = new File(filePath);
         Parser parser = new Parser(vmFile);
         // create output file
@@ -21,13 +26,13 @@ public class VMTranslator {
     }
 
     private void translate(Parser parser, CodeWriter writer) {
-        while(parser.hasMoreLines()){
+        while (parser.hasMoreLines()) {
             parser.advance();
             CommandType currentCommandType = parser.commandType();
-            if (currentCommandType == CommandType.C_ARITHMETIC){
+            if (currentCommandType == CommandType.C_ARITHMETIC) {
                 String command = parser.arg1();
                 writer.writeArithmetic(command);
-            } else if (currentCommandType == CommandType.C_PUSH || currentCommandType == CommandType.C_POP){
+            } else if (currentCommandType == CommandType.C_PUSH || currentCommandType == CommandType.C_POP) {
                 String segment = parser.arg1();
                 int index = parser.arg2();
                 writer.writePushPop(currentCommandType, segment, index);
