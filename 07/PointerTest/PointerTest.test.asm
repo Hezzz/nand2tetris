@@ -8,8 +8,7 @@ M=D
 M=M+1
 // pop pointer 0
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @THIS
 M=D
@@ -23,8 +22,7 @@ M=D
 M=M+1
 // pop pointer 1
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @THAT
 M=D
@@ -44,8 +42,7 @@ D=D+M
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M
@@ -66,8 +63,7 @@ D=D+M
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M

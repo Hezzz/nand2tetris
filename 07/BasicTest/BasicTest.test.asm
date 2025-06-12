@@ -14,8 +14,7 @@ D=D+M
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M
@@ -44,8 +43,7 @@ D=D+M
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M
@@ -58,8 +56,7 @@ D=D+M
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M
@@ -80,8 +77,7 @@ D=D+M
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M
@@ -110,8 +106,7 @@ D=D+M
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M
@@ -124,8 +119,7 @@ D=D+M
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M
@@ -146,8 +140,7 @@ D=D+A
 @R15
 M=D
 @SP
-M=M-1
-A=M
+AM=M-1
 D=M
 @R15
 A=M
