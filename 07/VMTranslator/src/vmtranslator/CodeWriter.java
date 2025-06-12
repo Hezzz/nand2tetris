@@ -60,7 +60,7 @@ public class CodeWriter {
         if (!command.equals("eq") && !command.equals("lt") && !command.equals("gt")) {
             String binaryOperationCommands = getBinaryOperationCommands(command);
             appendLine(arithmeticCommand, binaryOperationCommands);
-            arithmeticCommand.append(pushStackPointer());
+            arithmeticCommand.append(push());
         } else {
             String comparisonCommands = getComparisonCommands(command);
             appendLine(arithmeticCommand, comparisonCommands);
@@ -109,7 +109,7 @@ public class CodeWriter {
         if (!segment.equals("constant"))
             appendLine(tempBuilder, "D=M");
         // increment stack pointer
-        tempBuilder.append(pushStackPointer());
+        tempBuilder.append(push());
         return tempBuilder.toString();
     }
 
@@ -125,7 +125,7 @@ public class CodeWriter {
         // if temp segment, add 5 to address
         if (segment.equals("temp"))
             appendLine(tempBuilder, "D=D+A");
-        // if local, argument, this, that segments, add M to address
+        // if local, argument, this, that segments, add index D to address M
         if (segment.equals("local") || segment.equals("argument") || segment.equals("this") || segment.equals("that"))
             appendLine(tempBuilder, "D=D+M");
         // assign address to @R15 if segment is not static and pointer
@@ -134,7 +134,7 @@ public class CodeWriter {
             appendLine(tempBuilder, "M=D");
         }
         // decrement stack pointer
-        tempBuilder.append(popStackPointer());
+        tempBuilder.append(pop());
         if (!segment.equals("static") && !segment.equals("pointer")) {
             appendLine(tempBuilder, "@R15");
             appendLine(tempBuilder, "A=M");
@@ -221,7 +221,7 @@ public class CodeWriter {
         }
     }
 
-    private static String pushStackPointer() {
+    private static String push() {
         StringBuilder tempBuilder = new StringBuilder();
         appendLine(tempBuilder, "@SP");
         appendLine(tempBuilder, "A=M");
@@ -231,11 +231,9 @@ public class CodeWriter {
         return tempBuilder.toString();
     }
 
-    private static String popStackPointer() {
+    private static String pop() {
         StringBuilder tempBuilder = new StringBuilder();
-        appendLine(tempBuilder, "@SP");
-        appendLine(tempBuilder, "M=M-1");
-        appendLine(tempBuilder, "A=M");
+        tempBuilder.append(popStack());
         appendLine(tempBuilder, "D=M");
         return tempBuilder.toString();
     }
