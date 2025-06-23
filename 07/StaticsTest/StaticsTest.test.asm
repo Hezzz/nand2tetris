@@ -287,9 +287,9 @@ M=D
 1;JMP
 (Sys.init$ret.4)
 // label END
-(END)
+(Sys.init$END)
 // goto END
-@END
+@Sys.init$END
 1;JMP
 
 // function Class1.set 0

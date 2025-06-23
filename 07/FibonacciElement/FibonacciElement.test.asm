@@ -63,13 +63,13 @@ M=M+1
 @SP
 AM=M-1
 D=M
-@N_LT_2
+@Main.fibonacci$N_LT_2
 D;JNE
 // goto N_GE_2
-@N_GE_2
+@Main.fibonacci$N_GE_2
 1;JMP
 // label N_LT_2
-(N_LT_2)
+(Main.fibonacci$N_LT_2)
 // push argument 0
 @0
 D=A
@@ -131,7 +131,7 @@ M=D
 A=M
 1;JMP
 // label N_GE_2
-(N_GE_2)
+(Main.fibonacci$N_GE_2)
 // push argument 0
 @0
 D=A
@@ -420,7 +420,7 @@ M=D
 1;JMP
 (Sys.init$ret.1)
 // label END
-(END)
+(Sys.init$END)
 // goto END
-@END
+@Sys.init$END
 1;JMP
