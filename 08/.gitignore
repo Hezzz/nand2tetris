@@ -1,0 +1,3 @@
+// ignore output files
+*.asm
+!*.test.asm
