@@ -21,8 +21,8 @@ public class VMTranslator {
 
     private File getOutputFile(File vmFile) {
         String fileName = vmFile.getName();
-        String asmFileName = fileName.substring(0, fileName.lastIndexOf("."));
-        return new File("../../07/" + asmFileName + "/" + asmFileName + ".asm");
+        String outputPath = vmFile.getParent() + "/" + fileName.replace(".vm", ".asm");
+        return new File(outputPath);
     }
 
     private void translate(Parser parser, CodeWriter writer) {
